@@ -33,6 +33,15 @@ definitions:
       message:
         type: string
     type: object
+  handler.ListTagsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.TagResponse'
+        type: array
+      message:
+        type: string
+    type: object
   handler.ShowTagResponse:
     properties:
       data:
@@ -148,6 +157,25 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create Tag
+      tags:
+      - Tags
+  /tags:
+    get:
+      consumes:
+      - application/json
+      description: List all tags
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListTagsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List Tags
       tags:
       - Tags
 swagger: "2.0"
