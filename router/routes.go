@@ -1,13 +1,20 @@
 package router
 
 import (
+	docs "github.com/brenoacf/gotags-api-test/docs"
 	"github.com/brenoacf/gotags-api-test/handler"
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	// Initialize Handler
 	handler.InitializeHandler()
+
+	// Docs
+	basePath := "/api/v1"
+	docs.SwaggerInfo.BasePath = basePath
 
 	v1 := router.Group("/api/v1")
 	{
@@ -18,4 +25,5 @@ func initializeRoutes(router *gin.Engine) {
 		v1.GET("/tags", handler.ListTagsHandler)
 	}
 
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }
