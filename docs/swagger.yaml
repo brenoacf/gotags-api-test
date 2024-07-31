@@ -49,6 +49,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.UpdateTagResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.TagResponse'
+      message:
+        type: string
+    type: object
   schemas.TagResponse:
     properties:
       code:
@@ -157,6 +164,44 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create Tag
+      tags:
+      - Tags
+    put:
+      consumes:
+      - application/json
+      description: Update a tag
+      parameters:
+      - description: Tag identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Tag data to Update
+        in: body
+        name: tag
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UpdateTagResponse'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.UpdateTagResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update Tag
       tags:
       - Tags
   /tags:

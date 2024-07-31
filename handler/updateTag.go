@@ -7,6 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update Tag
+// @Description Update a tag
+// @Tags Tags
+// @Accept json
+// @Produce json
+// @Param id query string true "Tag identification"
+// @Param tag body UpdateTagResponse true "Tag data to Update"
+// @Success 200 {object} UpdateTagResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /tag [put]
 func UpdateTagHandler(ctx *gin.Context) {
 	request := UpdateTagRequest{}
 

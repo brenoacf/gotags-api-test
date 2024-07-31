@@ -48,3 +48,8 @@ type ListTagsResponse struct {
 	Message string                `json:"message"`
 	Data    []schemas.TagResponse `json:"data"`
 }
+
+type UpdateTagResponse struct {
+	Message string              `json:"message"`
+	Data    schemas.TagResponse `json:"data"`
+}
