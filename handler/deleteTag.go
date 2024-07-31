@@ -8,6 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete Tag
+// @Description Delete a tag
+// @Tags Tags
+// @Accept json
+// @Produce json
+// @Param id query string true "Tag identification"
+// @Success 200 {object} DeleteTagResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /tag [delete]
 func DeleteTagHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {

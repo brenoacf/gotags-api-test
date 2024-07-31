@@ -19,6 +19,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.DeleteTagResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.TagResponse'
+      message:
+        type: string
+    type: object
   handler.ErrorResponse:
     properties:
       errorCode:
@@ -51,6 +58,34 @@ info:
   contact: {}
 paths:
   /tag:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a tag
+      parameters:
+      - description: Tag identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.DeleteTagResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Delete Tag
+      tags:
+      - Tags
     post:
       consumes:
       - application/json

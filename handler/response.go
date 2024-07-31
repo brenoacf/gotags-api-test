@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/brenoacf/gotags-api-test/schemas"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,4 +22,19 @@ func sendSuccess(ctx *gin.Context, op string, data interface{}) {
 		"message": fmt.Sprintf("tag from handler %s successfull", op),
 		"data":    data,
 	})
+}
+
+type ErrorResponse struct {
+	Message   string `json:"message"`
+	ErrorCode string `json:"errorCode"`
+}
+
+type CreateTagResponse struct {
+	Message string              `json:"message"`
+	Data    schemas.TagResponse `json:"data"`
+}
+
+type DeleteTagResponse struct {
+	Message string              `json:"message"`
+	Data    schemas.TagResponse `json:"data"`
 }
