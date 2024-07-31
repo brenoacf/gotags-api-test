@@ -38,3 +38,8 @@ type DeleteTagResponse struct {
 	Message string              `json:"message"`
 	Data    schemas.TagResponse `json:"data"`
 }
+
+type ShowTagResponse struct {
+	Message string              `json:"message"`
+	Data    schemas.TagResponse `json:"data"`
+}

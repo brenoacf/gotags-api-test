@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Show Tag
+// @Description Show a tag
+// @Tags Tags
+// @Accept json
+// @Produce json
+// @Param id query string true "Tag identification"
+// @Success 200 {object} ShowTagResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /tag [get]
 func ShowTagHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {
