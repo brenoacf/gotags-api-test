@@ -38,3 +38,20 @@ func (r *CreateTagRequest) validate() error {
 
 	return nil
 }
+
+type UpdateTagRequest struct {
+	Code  uint64  `json:"code"`
+	Tag   string  `json:"tag"`
+	Date  string  `json:"date"`
+	Hour  string  `json:"hour"`
+	Value float64 `json:"value"`
+}
+
+func (r *UpdateTagRequest) Validate() error {
+	// If any field is provided, validation is truthy
+	if r.Code > 0 && r.Date != "" && r.Hour != "" && r.Tag != "" && r.Value > 0 {
+		return nil
+	}
+
+	return fmt.Errorf("at least one valid field must be provided")
+}
