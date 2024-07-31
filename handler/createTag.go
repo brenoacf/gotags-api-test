@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create Tag
+// @Description Create a new tag
+// @Tags Tags
+// @Accept json
+// @Produce json
+// @Param request body CreateTagRequest true "Request body"
+// @Success 200 {object} CreateTagResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /tag [post]
 func CreateTagHandler(ctx *gin.Context) {
 	request := CreateTagRequest{}
 

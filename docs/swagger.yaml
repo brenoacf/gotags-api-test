@@ -1,4 +1,83 @@
+definitions:
+  handler.CreateTagRequest:
+    properties:
+      code:
+        type: integer
+      date:
+        type: string
+      hour:
+        type: string
+      tag:
+        type: string
+      value:
+        type: number
+    type: object
+  handler.CreateTagResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.TagResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  schemas.TagResponse:
+    properties:
+      code:
+        type: integer
+      createdAt:
+        type: string
+      date:
+        type: string
+      deletedAt:
+        type: string
+      hour:
+        type: string
+      id:
+        type: integer
+      tag:
+        type: string
+      updatedAt:
+        type: string
+      value:
+        type: number
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /tag:
+    post:
+      consumes:
+      - application/json
+      description: Create a new tag
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateTagRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateTagResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Create Tag
+      tags:
+      - Tags
 swagger: "2.0"
